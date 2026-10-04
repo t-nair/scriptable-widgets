@@ -19,11 +19,6 @@ try {
     .filter(d => d.date <= today)
     .sort((a, b) => (a.date < b.date ? -1 : 1))
 
-  // current streak (today may not be counted yet, so don't break on it)
-  let streak = 0, i = days.length - 1
-  if (days[i].level === 0) i--
-  while (i >= 0 && days[i].level > 0) { streak++; i-- }
-
   // draw the grid: columns = weeks, rows = weekdays
   const first = new Date(days[0].date + "T00:00:00").getDay()
   const totalCols = Math.ceil((days.length + first) / 7)
@@ -45,18 +40,8 @@ try {
     ctx.fillPath()
   })
 
-  const row = widget.addStack()
-  row.centerAlignContent()
-  const img = row.addImage(ctx.getImage())
+  const img = widget.addImage(ctx.getImage())
   img.imageSize = new Size(w, h)
-  row.addSpacer(6)
-  const col = row.addStack()
-  col.layoutVertically()
-  col.centerAlignContent()
-  const n = col.addText(String(streak))
-  n.font = Font.boldSystemFont(20)
-  const l = col.addText("streak")
-  l.font = Font.systemFont(9)
 } catch (e) {
   widget.addText("GitHub unreachable")
 }
