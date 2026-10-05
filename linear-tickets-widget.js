@@ -1,7 +1,7 @@
 // Linear tickets: Home Screen (large)
 // First run inside Scriptable to paste your API key (Linear > Settings > Security & access > Personal API keys).
 const KEY = "linear_api_key"
-const MAX_ROWS = 7
+const MAX_ROWS = 9
 const TYPES = [ // order = bar order
   ["started", "In progress", "#f2c94c"],
   ["unstarted", "Todo", "#9aa0a6"],
